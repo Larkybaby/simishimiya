@@ -1,0 +1,61 @@
+<!--funciona el link-->
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=ddevice-width, initial-scale=1.0">
+        <title>Agregar Médico</title>
+        <link rel="stylesheet" href="../../styles/components.css">
+    </head>
+    <body>
+        <!--header-->
+        <div id="header-container"></div>
+        <main>
+            <section class="form-section">
+                <h2>Agregar a un nuevo medico</h2>
+                <form action="/agregarmedico" method="POST"></form>
+                    <label for="nombre_completo">Nombre Completo:</label>
+                    <input type="text" id="nombre_completo" name="nombre_completo" required><br>
+                    <label for="especialidad">Especialidad:</label>
+                    <select class="form-control" name="categoria" required>
+                    <option value="seleccione">seleccione una opcion..</option>
+                    <option value="Pediatra">Pediatra</option>
+                    <option value="Pediatra">Ginecologo</option>
+                    <option value="Cardiologia">Cardiologia</option>
+                    <option value="Dermatologia">Dermatologia</option>
+                    </select>
+                    <label for="telefono">Teléfono:</label>
+                    <input type="tel" id="telefono" name="telefono" required><br>
+                    <label for="edad">Edad:</label>
+                    <input type="number" id="edad" name="edad" required><br>
+                    <label for="direccion">Dirección:</label>
+                    <input type="text" id="direccion" name="direccion" required><br>
+                    <label for="curp">CURP:</label>
+                    <input type="text" id="curp" name="curp" required><br>
+                    <label for="codigo">Código Médico:</label>
+                    <input type="text" id="codigo" name="codigo" required><br>
+            </form>
+            </label></section>
+            <button onclick="location.href='medico.html'" class="agregar-medico">Agregar</button>
+            <button onclick="location.href='medico.html'" class="cancelar-medico">Cancelar</button>
+        </main>
+        <!--footer-->
+        <div id="footer-container"></div>
+        <script>
+        //cargar header
+        fetch('/../../../header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header-container').innerHTML = data;
+        })
+        .catch(error => console.error('Error al cargar el header', error));
+        //cargar footer
+        fetch('/../../../footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer-container').innerHTML = data;
+        })
+        .catch(error => console.error('Error al cargar el footer', error));
+        </script>
+    </body>
+    </html>

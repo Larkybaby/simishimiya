@@ -1,0 +1,63 @@
+<!--creen la vista de bienvenida-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmacia Simi - Sucursal Bienvenida</title>
+    <link rel="stylesheet" href="../../styles/components.css">
+</head>
+<body>
+    <!--header-->
+    <div id="header-container"></div>
+    <!--fin de header-->
+    <main class="sucursal-bienvenida">
+    <div class="sucursal-welcome">
+    <!--asi alo-->
+<h1 id="titulo-sucursal">Bienvenido a la sucursal [id_sucursal]</h1> </div>
+    <div class="bienvenida-instructions">
+        <h2>¿Quien nos acompaña el día de hoy?</h2>
+        <p>Por favor seleccione a que area pertenece:</p>
+    </div>
+    
+    <div class="botones">
+        <!--agregar pantallas a las que debe ir cuando las tengamos vamos a crear una vista para cada uno para farmacia para medico y para recepcionista :D-->
+        <button onclick="location.href='../Personal_Farmacia/farmacia.html'">Personal de Farmacia</button>
+        <button onclick="location.href='../Personal_Medico/medico.html'">Medico</button>
+        <button onclick="location.href='../Personal_Recepcion/pacientes.html'">Recepcionista</button></div>
+        <div class="botoncito">
+        <button onclick="location.href='sucursales.html'">Regresar</button>
+        </div>
+    
+</main>
+    <!--footer-->
+    <div id="footer-container"></div>
+    <!--scripts-->
+    <!--cargar header-->
+  <script>
+    // Cargar header
+    fetch('../../../header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header-container').innerHTML = data;
+        })
+        .catch(error => console.error('Error al cargar el header:', error));
+
+    // Cargar footer
+    fetch('../../../footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer-container').innerHTML = data;
+        })
+        .catch(error => console.error('Error cargando footer:', error));
+
+    window.addEventListener('DOMContentLoaded', () => {
+        const sucursalNombre = localStorage.getItem('sucursalNombre') || 'Sucursal';
+        const titulo = document.getElementById('titulo-sucursal');
+        if (titulo) {
+            titulo.textContent = `Bienvenido a la sucursal ${sucursalNombre}`;
+        }
+    });
+</script>
+</body>
+</html>

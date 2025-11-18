@@ -31,26 +31,32 @@ export class SucursalController {
         }
 
         container.innerHTML = sucursales.map(sucursal => `
-            <div class="sucursal-card" data-sucursal-id="${sucursal.numero_sucursal}">
+            <div class="sucursal-card" 
+                    data-sucursal-id="${sucursal.numero_sucursal}"
+                    data-sucursal-nombre="${sucursal.nombre || 'Sucursal ' + sucursal.numero_sucursal}">
                 <p class="sucursal-id">Sucursal ${sucursal.numero_sucursal}</p>
                 <p class="sucursal-nombre">${sucursal.nombre || ''}</p>
                 <p class="sucursal-direccion">${sucursal.direccion || ''}</p>
             </div>
         `).join('');
 
-        // Agregar evento click a cada tarjeta
         document.querySelectorAll('.sucursal-card').forEach(card => {
             card.addEventListener('click', function() {
                 const sucursalId = this.getAttribute('data-sucursal-id');
-                SucursalController.seleccionarSucursal(sucursalId);
+                const sucursalNombre = this.getAttribute('data-sucursal-nombre'); // 
+                SucursalController.seleccionarSucursal(sucursalId, sucursalNombre); // 
             });
         });
     }
 
-    static seleccionarSucursal(sucursalId) {
-        localStorage.setItem('sucursal_seleccionada', sucursalId);
-        console.log('Sucursal seleccionada:', sucursalId);
-        // Aquí puedes agregar más lógica, como redirigir a otra página
+    static seleccionarSucursal(sucursalId, sucursalNombre) {
+        localStorage.setItem('sucursalId', sucursalId);
+        localStorage.setItem('sucursalNombre', sucursalNombre);
+        
+        console.log('Sucursal seleccionada:', sucursalId, sucursalNombre);
+        
+        // Redirigir a bienvenido
+        window.location.href = 'bienvenido.html';
     }
 
     static async inicializar() {
@@ -63,8 +69,6 @@ export class SucursalController {
             container.innerHTML = '<p>Error al cargar las sucursales</p>';
             return;
         }
-
         SucursalController.renderizarSucursales(sucursales, container);
     }
 }
-

@@ -1,0 +1,76 @@
+<!--ya funciona el link que lleva aqui-->
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Personal Médico</title>
+        <link rel="stylesheet" href="../../styles/components.css">
+</head>
+    </head>
+    <body>
+        <!--header-->
+        <div id="header-container"></div>
+            <div class="medico-bienvenida">
+            <h1>Área de Personal Médico [id_sucursal]</h1>
+            <p>Bienvenido al área de personal médico.</p><br>
+            <div class="botones-medico">
+            <button class="botonregreso" onclick="location.href='../sucursales/bienvenido.html'">Regresar</button>
+            <button class="botonagregar" onclick="location.href='agregarmedico.html'">Agregar medico</button>
+            </div>
+            </div>
+        <br>
+            <div class="medico-personal">
+                <h2>Medicos de la sucursal</h2>
+               <table>
+                <thead>
+                <tr>
+                    <th>Codigo</th>
+                    <th>Curp</th>
+                    <th>Nombre completo</th>
+                    <th>Edad</th>
+                    <th>Telefono</th>
+                    <th>Direccion</th>
+                    <th>Especialidad</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <td>Ejemplo codigo</td>
+                <td>Ejemplo curp</td>
+                <td>Ejemplo nombre</td>
+                <td>Ejemplo edad</td>
+                <td>Ejemplo telefono</td>
+                <td>Ejemplo direccion</td>
+                <td>Ejemplo especialidad</td>
+                <td>
+                    <button class="citas-medico">Ver citas</button>
+                    <button class="editar-medico">Editar medico</button>
+                    <button class="eliminar-medico">Eliminar medico</button>
+                </td>
+            </tbody>
+                </table>
+            </div>
+            <br>
+        </main>
+        <!--footer-->
+        <div id="footer-container"></div>
+       <!--cargar componentes-->
+        <script>
+            //cargar header
+            fetch('../../../header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+            })
+            .catch(error => console.error('Error al cargar el header:', error));
+            //cargar footer
+            fetch('../../../footer.html')
+            .then(response => response.text())
+            .then(data =>{
+                document.getElementById('footer-container').innerHTML = data;
+            })
+            .catch(error => console.error('Error al cargar el footer:', error));
+        </script>
+    </body>
+</html>

@@ -1,0 +1,29 @@
+{
+  "name": "simi",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "node src/app.js"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.83.0",
+    "ejs": "^3.1.10",
+    "express": "^4.21.2"
+  },
+  "description": "Sistema web para la gestión de consultorios de Farmacia Simi. Proyecto educativo diseñado para que los practicantes aprendan desarrollo web moderno siguiendo buenas prácticas y arquitectura MVC.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jesusmariade/simi.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jesusmariade/simi/issues"
+  },
+  "homepage": "https://github.com/jesusmariade/simi#readme",
+  "devDependencies": {
+    "nodemon": "^3.1.11"
+  }
+}

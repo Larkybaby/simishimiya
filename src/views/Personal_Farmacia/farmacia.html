@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Farmacia Simi - Panel de Control</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../../styles/components.css">
+</head>
+<body>
+	<!-- Contenedores para header y footer -->
+	<div id="header-container"></div>
+
+	<div class="container">
+		<div class="farma">
+			<h1>SIMI</h1>
+			<h2 id="titulo-sucursal">Bienvenido Farmacia</h2>
+			<p>Farmacia <span id="id-farmacia">[id_farmacia]</span> de sucursal <span id="id-sucursal">[id_sucursal]</span></p>
+		</div>
+
+		<!-- menu -->
+		<div class="menu">
+			<h3> Ventas </h3>
+			<button id="btn-abrir-registrar" class="btn primary" aria-label="Registrar venta">Registrar venta</button>
+
+			<h3> Lista de ventas </h3>
+			<div id="ventas-list"></div>
+
+			<h3> Recetas </h3>
+			<div id="recetas-list"></div>
+		</div>
+
+		<!-- formulario registrar venta (oculto) -->
+		<div id="form-registrar" class="panel hidden" aria-hidden="true">
+			<h3>Registrar venta</h3>
+			<form id="formVenta">
+				<label>Medicamento<br>
+					<select name="medicamento" id="select-medicamento" required>
+						<option value="">Seleccione un medicamento...</option>
+					</select>
+				</label><br>
+				<label>Cantidad<br><input type="number" name="cantidad" id="input-cantidad" value="1" min="1" required></label><br>
+				<label>Precio Unitario<br><input type="number" step="0.01" name="precio_unitario" id="input-precio" readonly></label><br>
+				<label>Total<br><input type="number" step="0.01" name="total" id="input-total" required readonly></label><br>
+				<button type="submit" class="btn primary" aria-label="Guardar venta">Guardar</button>
+				<button type="button" id="btn-cancelar" class="btn" aria-label="Cancelar">Cancelar</button>
+			</form>
+		</div>
+	</div>
+
+	<div id="footer-container"></div>
+
+	<!-- Scripts para cargar header y footer -->
+	<script>
+		// Helper para cargar partials con fallback
+		async function loadPartial(name, targetId) {
+			const targets = [
+				`../../../${name}.html`,
+				`../../../../${name}.html`,
+				`../../../public/${name}.html`
+			];
+			const container = document.getElementById(targetId);
+			if (!container) return;
+			for (const url of targets) {
+				try {
+					const res = await fetch(url);
+					if (!res.ok) continue;
+					const text = await res.text();
+					container.innerHTML = text;
+					return;
+				} catch (err) {
+					// seguir al siguiente fallback
+				}
+			}
+			container.innerHTML = '';
+		}
+
+		// Cargar header y footer
+		(async () => {
+			await loadPartial('header', 'header-container');
+			await loadPartial('footer', 'footer-container');
+		})();
+	</script>
+
+	<!-- Script para inicializar el controlador -->
+	<script type="module">
+		import { FarmaciaController } from '../../controllers/FarmaciaController.js';
+		
+		// Configurar botones y formulario
+		const formPanel = document.getElementById('form-registrar');
+		const formVenta = document.getElementById('formVenta');
+		const btnAbrir = document.getElementById('btn-abrir-registrar');
+		const btnCancelar = document.getElementById('btn-cancelar');
+		
+		// Botón abrir formulario
+		if (btnAbrir) {
+			btnAbrir.addEventListener('click', () => {
+				if (formVenta) {
+					formVenta.reset();
+					formVenta.removeAttribute('data-edit-id');
+				}
+				if (formPanel) {
+					formPanel.classList.remove('hidden');
+					formPanel.setAttribute('aria-hidden', 'false');
+				}
+			});
+		}
+		
+		// Botón cancelar
+		if (btnCancelar) {
+			btnCancelar.addEventListener('click', () => {
+				if (formPanel) {
+					formPanel.classList.add('hidden');
+					formPanel.setAttribute('aria-hidden', 'true');
+				}
+				if (formVenta) {
+					formVenta.reset();
+					formVenta.removeAttribute('data-edit-id');
+				}
+			});
+		}
+		
+		// Submit del formulario
+		if (formVenta) {
+			formVenta.addEventListener('submit', async (e) => {
+				e.preventDefault();
+				const formData = new FormData(formVenta);
+				const ventaData = {
+					id_medicamento: formData.get('medicamento'),
+					cantidad: formData.get('cantidad'),
+					total: formData.get('total')
+				};
+				
+				// Validar que se haya seleccionado un medicamento
+				if (!ventaData.id_medicamento) {
+					alert('Por favor seleccione un medicamento');
+					return;
+				}
+				
+				try {
+					const editId = formVenta.dataset.editId;
+					
+					if (editId) {
+						// Actualizar venta existente
+						const { venta, error } = await FarmaciaController.actualizarVenta(parseInt(editId), ventaData);
+						if (error) {
+							alert('Error al actualizar la venta');
+							return;
+						}
+					} else {
+						// Crear nueva venta
+						const { venta, error } = await FarmaciaController.crearVenta(ventaData);
+						if (error) {
+							alert('Error al crear la venta');
+							return;
+						}
+					}
+					
+					// Ocultar formulario y recargar datos
+					if (formPanel) {
+						formPanel.classList.add('hidden');
+						formPanel.setAttribute('aria-hidden', 'true');
+					}
+					formVenta.reset();
+					formVenta.removeAttribute('data-edit-id');
+					
+					// Limpiar campos calculados
+					const inputPrecio = document.getElementById('input-precio');
+					const inputTotal = document.getElementById('input-total');
+					if (inputPrecio) inputPrecio.value = '';
+					if (inputTotal) inputTotal.value = '';
+					
+					// Recargar ventas
+					FarmaciaController.inicializar();
+				} catch (err) {
+					console.error('Error al procesar venta:', err);
+					alert('Error al procesar la venta');
+				}
+			});
+		}
+		
+		// Inicializar cuando el DOM esté listo
+		document.addEventListener('DOMContentLoaded', () => {
+			FarmaciaController.inicializar();
+		});
+	</script>
+</body>
+</html>

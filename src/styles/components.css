@@ -98,24 +98,20 @@ body {
     color: #49CCCC;
     font-weight: 400;
 }
-/*footer alo */
-#footer-container {
-    position: relative;
-    width: 100%;
-    z-index: 100;
-}
-
 .footer {
     background: #ffffff;
     padding: 40px 20px;
     border-top: 1px solid #E1ECD6;
     width: 100%;
+    margin-top: auto;
+
 }
 
 .footer-container {
     max-width: 1400px;
     margin: 0 auto;
     text-align: center;
+    
 }
 
 .footer-container p {
@@ -445,4 +441,644 @@ body {
         max-width: 100%;
     }
 }
+/*Estilos bienvenida sucursales*/
 
+    .sucursal-welcome{
+        padding: 40px 20px;
+        background: #49CCCC;
+        text-align: center;
+        color: #ffffff;
+    }
+    .bienvenida-instructions{
+        text-align: center;
+        color: #ffffff;
+        background: #16C1C8;
+    }
+    .botones {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        margin-top: 30px;
+    }
+    .botoncito {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        margin-top: 20px;
+    }
+    .botoncito button{
+      margin: 10px;
+        font-size: 18px; 
+        font-weight: 600;
+        background: #16C1C8;
+        color:  #ffffff;
+        text-align: center;
+        padding: 20px;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;  
+    }
+    .botones button{
+        margin: 10px;
+        font-size: 18px; 
+        font-weight: 600;
+        background: #16C1C8;
+        color:  #ffffff;
+        text-align: center;
+        padding: 20px;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+    }
+    .botones button:hover {
+        transform: translateY(-5px);
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 20px rgba(22, 193, 200, 0.4);
+        background: #49CCCC;
+    }
+    .botoncito button:hover {
+        transform: translateY(-5px);
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 20px rgba(22, 193, 200, 0.4);
+        background: #49CCCC;
+    }
+/*Estilos personal farmacia*/
+
+/* Reset ligero */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root{
+  --primary: #0d6efd;
+  --primary-600: #0b5ed7;
+  --accent: #17a2b8;
+  --danger: #dc3545;
+  --bg: #f4f7fb;
+  --card: #ffffff;
+  --muted: #6c757d;
+  --text: #222;
+  --radius: 8px;
+  --shadow: 0 6px 18px rgba(18, 38, 63, 0.08);
+  --glass: rgba(255,255,255,0.6);
+}
+
+/* Tipografía */
+html,body { height:100%; }
+body {
+  font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background: linear-gradient(180deg, #f7fbff 0%, var(--bg) 100%);
+  color: var(--text);
+  -webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;
+  line-height:1.45;
+}
+
+/* Header / Footer */
+.site-header, .site-footer {
+  width:100%;
+  background: var(--card);
+  border-bottom: 1px solid #e9eef6;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+  padding:14px 20px;
+  box-shadow: 0 3px 8px rgba(15, 23, 42, 0.03);
+  position:sticky;
+  top:0;
+  z-index:50;
+}
+.site-header .logo { font-weight:700; font-size:1.15rem; color:var(--primary); }
+.site-header nav a {
+  margin-left:14px;
+  color:var(--muted);
+  text-decoration:none;
+  font-size:0.95rem;
+}
+.site-header nav a:hover { color:var(--primary-600); }
+
+/* Layout */
+.container {
+  max-width:1100px;
+  margin:28px auto;
+  padding:20px;
+  display:flex;
+  gap:20px;
+  align-items:flex-start;
+}
+@media (max-width:900px){
+  .container { flex-direction:column; padding:16px; }
+}
+
+/* Cards */
+.farma {
+  flex:1;
+  background: linear-gradient(180deg, rgba(255,255,255,0.6), var(--card));
+  border-radius: var(--radius);
+  padding:18px;
+  box-shadow: var(--shadow);
+}
+.menu {
+  width:360px;
+  min-width:240px;
+  background:var(--card);
+  border-radius: var(--radius);
+  padding:16px;
+  box-shadow: var(--shadow);
+}
+@media (max-width:900px){
+  .menu { width:100%; }
+}
+
+/* Titles */
+.farma h1 { font-size:1.9rem; color:var(--primary); margin-bottom:6px; }
+.farma h2 { font-size:1.1rem; color:var(--muted); margin-bottom:10px; }
+
+/* Buttons */
+.btn {
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:8px;
+  padding:8px 12px;
+  border-radius:6px;
+  border:1px solid rgba(15,23,42,0.06);
+  background:transparent;
+  color:var(--text);
+  cursor:pointer;
+  transition:all .15s ease;
+  font-size:0.95rem;
+}
+.btn:hover { transform:translateY(-2px); box-shadow:0 6px 14px rgba(15,23,42,0.06); }
+.btn:active { transform:translateY(0); opacity:0.95; }
+
+/* variants */
+.btn.primary {
+  background: linear-gradient(180deg,var(--primary),var(--primary-600));
+  color:white;
+  border: none;
+}
+.btn.primary:hover { filter:brightness(.98); }
+
+.btn.outline {
+  background:transparent;
+  border:1px solid rgba(15,23,42,0.08);
+}
+.btn.danger {
+  background:var(--danger);
+  color:white;
+  border:none;
+}
+
+/* small / icon */
+.btn.small { padding:6px 8px; font-size:0.85rem; border-radius:6px; }
+.btn.icon { padding:6px; border-radius:6px; }
+
+/* Form / Inputs */
+label { display:block; margin-bottom:8px; color:var(--muted); font-size:0.92rem; }
+input[type="text"], input[type="number"], input[type="email"], textarea, select {
+  width:100%;
+  padding:10px 12px;
+  border-radius:6px;
+  border:1px solid #e8eef8;
+  background: #fff;
+  font-size:0.95rem;
+  color:var(--text);
+  outline:none;
+  transition:border .12s ease, box-shadow .12s ease;
+}
+input:focus, textarea:focus, select:focus {
+  border-color: rgba(13,110,253,0.35);
+  box-shadow: 0 8px 20px rgba(13,110,253,0.06);
+}
+input[readonly] {
+  background-color: #f8f9fa;
+  cursor: not-allowed;
+}
+select {
+  cursor: pointer;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 12px center;
+  padding-right: 35px;
+}
+
+/* Panels */
+.panel { margin-top:12px; background:var(--card); padding:14px; border-radius:8px; box-shadow:var(--shadow); }
+
+/* Tables */
+.tablita {
+  width:100%;
+  border-collapse:collapse;
+  margin-top:10px;
+  background:transparent;
+  border-radius:6px;
+  overflow:hidden;
+  box-shadow: 0 2px 8px rgba(18,38,63,0.03);
+}
+.tablita thead { background: linear-gradient(90deg,#fafcff,#f3f8ff); }
+.tablita th, .tablita td {
+  padding:10px 12px;
+  text-align:left;
+  font-size:0.95rem;
+  border-bottom:1px solid #f1f5fb;
+}
+.tablita tbody tr:hover { background: rgba(13,110,253,0.02); }
+
+/* Lists */
+.ventas-ul { list-style:none; padding:0; margin:0; }
+.venta-item {
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:12px;
+  padding:10px;
+  border-radius:8px;
+  border:1px solid rgba(15,23,42,0.03);
+  margin-bottom:8px;
+  background:linear-gradient(180deg, #fff, #fbfdff);
+}
+
+/* Footer */
+.site-footer {
+  margin-top:24px;
+  padding:12px 18px;
+  border-top:1px solid #eef3fb;
+  background:transparent;
+  position:relative;
+}
+.site-footer p { color:var(--muted); font-size:0.9rem; }
+
+/* Utility */
+.hidden { display:none !important; }
+.center { text-align:center; }
+
+/* Small responsive tweaks */
+@media (max-width:480px){
+  .container { padding:12px; }
+  .site-header, .site-footer { padding:10px 12px; }
+  .farma h1 { font-size:1.4rem; }
+}
+/*Estilos FARMACIA*/
+body {
+    background: linear-gradient(135deg, var(--c4), var(--c3));
+    font-family: 'Poppins', sans-serif;
+    color: var(--text-dark);
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 40px auto;
+    background: var(--c5);
+    padding: 30px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    animation: fadeIn 0.4s ease-in-out;
+}
+
+/* ESTILOS DE FARMACIA*/
+.farma {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.farma h1 {
+    font-size: 48px;
+    letter-spacing: 4px;
+    color: var(--c1);
+    margin: 0;
+    text-shadow: 0 3px 8px rgba(0,0,0,0.15);
+}
+
+.farma h2 {
+    background: var(--c1);
+    display: inline-block;
+    color: var(--text-light);
+    padding: 6px 16px;
+    border-radius: var(--radius);
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+/*
+   MENU*/
+.menu h3 {
+    background: var(--c2);
+    padding: 6px 14px;
+    color: #fff;
+    display: inline-block;
+    border-radius: var(--radius);
+    margin-top: 25px;
+}
+
+#ventas-list, #recetas-list {
+    margin-top: 10px;
+    background: #fff;
+    border-radius: var(--radius);
+    padding: 15px;
+    box-shadow: var(--shadow);
+    min-height: 50px;
+}
+
+/*
+   BOTONES
+  */
+.btn {
+    padding: 10px 16px;
+    border-radius: var(--radius);
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+    transition: 0.2s ease-in-out;
+    margin-top: 10px;
+}
+
+.btn.primary {
+    background: var(--c1);
+    color: var(--text-light);
+    box-shadow: var(--shadow);
+}
+
+.btn.primary:hover {
+    background: var(--c2);
+    transform: translateY(-2px);
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+
+.panel {
+    background: #ffffff;
+    padding: 25px;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    margin-top: 25px;
+    animation: fadeIn 0.35s ease-in-out;
+}
+
+.hidden {
+    display: none;
+}
+
+.panel h3 {
+    margin-top: 0;
+    background: var(--c3);
+    padding: 8px 14px;
+    color: #fff;
+    border-radius: var(--radius);
+    display: inline-block;
+}
+
+/* INPUTS */
+.panel input, .panel select {
+    width: 100%;
+    padding: 10px;
+    border-radius: var(--radius);
+    border: 2px solid var(--c4);
+    margin-bottom: 12px;
+    font-size: 15px;
+    transition: 0.2s ease;
+}
+
+.panel input:focus, .panel select:focus {
+    border-color: var(--c1);
+    box-shadow: 0 0 6px var(--c1);
+    outline: none;
+}
+
+.panel input[readonly] {
+    background-color: #f8f9fa;
+    cursor: not-allowed;
+}
+
+.panel select {
+    cursor: pointer;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%2316C1C8' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    padding-right: 35px;
+}
+/*ANIMAE*/
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/*Estilos personal medico*/
+    .medico-bienvenida{
+        padding: 40px 20px;
+        background: #49CCCC;
+        text-align: center;
+        color: #ffffff;
+    }
+    .botones-medico {
+        display: flex;
+        justify-content: flex-end; /* Manda los botones a la derecha */
+        margin-top: -95px;
+        padding-right: 20px; /* Ajusta si quieres que estén más pegados o separados del borde */
+    }
+    .botonregreso {
+        margin: 10px;
+        font-size: 18px; 
+        font-weight: 600;
+        background: #16C1C8;
+        color: #ffffff;
+        padding: 12px 20px;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .botonagregar {
+        margin: 10px;
+        font-size: 18px; 
+        font-weight: 600;
+        background: #16C1C8;
+        color: #ffffff;
+        padding: 12px 20px;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .botonregreso:hover{
+        transform: translateY(-5px);
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 20px rgba(22, 193, 200, 0.4);
+        background: #49CCCC;
+    }
+    .botonagregar:hover{
+        transform: translateY(-5px);
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 20px rgba(22, 193, 200, 0.4);
+        background: #49CCCC;
+    }
+    .medico-personal{
+        color: #16C1C8;
+        text-align: center;
+    }
+    .medico-personal table{
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+    }
+    .medico-personal th,
+    .medico-personal td{
+        border: 1px solid #ffffff;
+        padding: 5px;
+        text-align: center;
+    }
+    .medico-personal thead{
+        background: #16C1C8;
+        color: #ffffff;
+        align-items: center;
+    }
+    .medico-personal tbody tr{
+        color: #16C1C8;
+        background: #ffffff;
+    }
+    .medico-personal tbody tr:hover{
+        background: #AEE1D3;
+    }
+    .citas-medico{
+        background: #16C1C8;
+        color: #ffffff;
+        padding: 5px;
+        border-radius: 8px;
+        margin: 5px;
+    }
+    .citas-medico:hover{
+        background: #12413d;
+    }
+    .editar-medico{
+        background: #d1c372;
+        color: #ffffff;
+        padding: 5px;
+        border-radius: 8px;
+        margin: 5px;
+    }
+    .editar-medico:hover{
+        background: #dadd17;
+    }
+    .eliminar-medico{
+        background: #330505;
+        color: #ffffff;
+        padding: 5px;
+        border-radius: 8px;
+        margin: 5px;
+    }
+      .eliminar-medico:hover{
+        background: #dd1717;
+    }
+    /* AGREGAR DOCTOR NO EL SIMI EL OTRO JEJEJE */
+    .agregar-medico{
+        margin: 10px;
+        font-size: 18px; 
+        font-weight: 600;
+        background: #16C1C8;
+        color: #ffffff;
+        padding: 12px 20px;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .cancelar-medico {
+        margin: 10px;
+        font-size: 18px; 
+        font-weight: 600;
+        background: #16C1C8;
+        color: #ffffff;
+        padding: 12px 20px;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .agregar-medico:hover{
+        transform: translateY(-5px);
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 20px rgba(22, 193, 200, 0.4);
+        background: #49CCCC;
+    }
+    .cancelar-medico:hover{
+        transform: translateY(-5px);
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 20px rgba(22, 193, 200, 0.4);
+        background: #49CCCC;
+    }
+    /*Estilos de recepcion*/
+    .encabezado-recepcion{
+        background: #49CCCC;
+        color: #ffffff;
+        text-align: center;    
+    }
+    /*tabla*/
+     .tabla-pacientes table{
+        border-collapse: collapse;
+        width: 100%;
+        margin-top: 20px;
+    }
+    .tabla-pacientes th,
+    .tabla-pacientes td{
+        border: 1px solid #ffffff;
+        padding: 5px;
+        text-align: center;
+    }
+    .tabla-pacientes thead{
+        background: #16C1C8;
+        color: #ffffff;
+        align-items: center;
+    }
+    .tabla-pacientes tbody tr{
+        color: #16C1C8;
+        background: #ffffff;
+    }
+    .tabla-pacientes tbody tr:hover{
+        background: #AEE1D3;
+    }
+    .seleccionar-paciente{
+        background: #16C1C8;
+        color: #ffffff;
+        padding: 5px;
+        border-radius: 8px;
+        margin: 5px;
+    }
+    .seleccionar-paciente:hover{
+        background: #12413d;
+    }
+    .editar-paciente{
+        background: #d1c372;
+        color: #ffffff;
+        padding: 5px;
+        border-radius: 8px;
+        margin: 5px;
+    }
+    .editar-paciente:hover{
+        background: #dadd17;
+    }
+    .eliminar-paciente{
+        background: #330505;
+        color: #ffffff;
+        padding: 5px;
+        border-radius: 8px;
+        margin: 5px;
+    }
+    .eliminar-paciente:hover{
+        background: #dd1717;
+    }
+    .botones-paciente {
+        display: flex;
+        justify-content: flex-end; /* Manda los botones a la derecha */
+        margin-top: -65px;
+        padding-right: 20px; /* Ajusta si quieres que estén más pegados o separados del borde */
+    }
