@@ -992,9 +992,13 @@ body {
         cursor: pointer;
         transition: 0.3s;
     }
+    .botones-medico {
+        justify-content: center; /* Centra los botones */
+        margin-top: 20px;
+    }
     .cancelar-medico {
         margin: 10px;
-        font-size: 18px; 
+        font-size: 18px;
         font-weight: 600;
         background: #16C1C8;
         color: #ffffff;
@@ -1016,7 +1020,302 @@ body {
         box-shadow: 0 8px 20px rgba(22, 193, 200, 0.4);
         background: #49CCCC;
     }
-    /*Estilos de recepcion*/
+    .form-section h2 {
+        font-size: 30px;
+        padding: 40px 20px;
+        background: #49CCCC;
+        text-align: center;
+        color: #ffffff;
+    }
+    .agregar-medico-general {
+        max-width: 700px;
+        margin: 20px auto;
+        padding: 30px;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(22, 193, 200, 0.75);
+    }
+    .nombre-medico, .curp-medico, .especialidad-medico, .telefono-medico, .edad-medico, .direccion-medico, .codigo-medico {
+        margin-bottom: 18px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .nombre-medico label, .curp-medico label, .especialidad-medico label, .telefono-medico label, .edad-medico label, .direccion-medico label, .codigo-medico label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 600;
+        color: #16C1C8;
+    }
+    .nombre-medico input, .curp-medico input, .especialidad-medico input, .telefono-medico input, .edad-medico input, .direccion-medico input, .codigo-medico input {
+        width: 600px;
+        padding: 10px 14px;
+        border: 1px solid #cfcfcf;
+        border-radius: 10px;
+        font-size: 15px;
+        box-sizing: border-box;
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .nombre-medico input:focus, .curp-medico input:focus, .especialidad-medico input:focus, .telefono-medico input:focus, .edad-medico input:focus, .direccion-medico input:focus, .codigo-medico input:focus {
+        border-color: #16C1C8;
+        box-shadow: 0 0 8px rgba(22, 193, 200, 0.3);
+        outline: none;
+    }
+
+    /* EDITAR MEDICO */
+    .actualizar-medico {
+        margin: 10px;
+        font-size: 18px; 
+        font-weight: 600;
+        background: #16C1C8;
+        color: #ffffff;
+        padding: 12px 20px;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .actualizar-medico:hover{
+        transform: translateY(-5px);
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 20px rgba(22, 193, 200, 0.4);
+        background: #49CCCC;
+    }
+    .form-section h2 {
+        font-size: 30px;
+        padding: 40px 20px;
+        background: #49CCCC;
+        text-align: center;
+        color: #ffffff;
+    }
+    .editar-medico-general {
+        max-width: 700px;
+        margin: 20px auto;
+        padding: 30px;
+        background: #ffffff;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(22, 193, 200, 0.75);
+    }
+    .edit-nombre-medico, .edit-curp-medico, .edit-especialidad-medico, .edit-telefono-medico, .edit-edad-medico, .edit-direccion-medico, .edit-codigo-medico {
+        margin-bottom: 18px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .edit-nombre-medico label, .edit-curp-medico label, .edit-especialidad-medico label, .edit-telefono-medico label, .edit-edad-medico label, .edit-direccion-medico label, .edit-codigo-medico label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 600;
+        color: #16C1C8;
+    }
+    .edit-nombre-medico input, .edit-curp-medico input, .edit-especialidad-medico input, .edit-telefono-medico input, .edit-edad-medico input, .edit-direccion-medico input, .edit-codigo-medico input {
+        width: 600px;
+        padding: 10px 14px;
+        border: 1px solid #cfcfcf;
+        border-radius: 10px;
+        font-size: 15px;
+        box-sizing: border-box;
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .edit-nombre-medico input:focus, .edit-curp-medico input:focus, .edit-especialidad-medico input:focus, .edit-telefono-medico input:focus, .edit-edad-medico input:focus, .edit-direccion-medico input:focus, .edit-codigo-medico input:focus {
+        border-color: #16C1C8;
+        box-shadow: 0 0 8px rgba(22, 193, 200, 0.3);
+        outline: none;
+    }
+    /* CITAS DE MEDICOS */
+    .bienvenida-medico {
+        font-size: 30px;
+        padding: 40px 20px;
+        background: #49CCCC;
+        text-align: center;
+        color: #ffffff;
+    }
+    .boton-medico {
+        display: flex;
+        justify-content: flex-end; /* Manda los botones a la derecha */
+        margin-top: -60px;
+        padding-right: 20px; /* Ajusta si quieres que estén más pegados o separados del borde */
+        }
+    .boton-licencia {
+        display: flex;
+        justify-content: flex-end; /* Manda los botones a la derecha */
+        margin-top: -70px;
+        padding-right: 0px; /* Ajusta si quieres que estén más pegados o separados del borde */
+        }
+    .boton-medico button, .boton-licencia button {
+        margin: 10px;
+        font-size: 18px;
+        font-weight: 600;
+        background: #16C1C8;
+        color: #ffffff;
+        padding: 12px 20px;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .boton-medico button:hover, .boton-licencia button:hover {
+        transform: translateY(-5px);
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 20px rgba(22, 193, 200, 0.4);
+        background: #49CCCC;
+    }
+    .citas-del-medico {
+        text-align: center;
+        width: 80%;
+        margin: 30px auto;
+        padding: 30px;
+        background: #ffffff;
+        border-radius: 12px;
+        transition: 0.3s ease;
+        box-shadow: 0 4px 12px rgba(22, 193, 200, 0.75);
+        
+    }
+    .citas-del-medico button {
+        margin: 10px;
+        font-size: 12px; 
+        font-weight: 600;
+        background: #16C1C8;
+        color: #ffffff;
+        padding: 12px 20px;
+        border-radius: 12px;
+        border: none;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+    .citas-del-medico button:hover {
+        transform: translateY(-5px);
+        transition: all 0.3s ease;
+        box-shadow: 0 8px 20px rgba(22, 193, 200, 0.4);
+        background: #49CCCC;
+    }
+    .licencia {
+        text-align: center;
+        width: 80%;
+        margin: 30px auto;
+        padding: 30px;
+        background: #ffffff;
+        border-radius: 12px;
+        transition: 0.3s ease;
+        box-shadow: 0 4px 12px rgba(22, 193, 200, 0.75);
+    }
+    .citas-del-medico table{
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 8px;
+    }
+    .citas-del-medico th,
+    .citas-del-medico td{
+        border: 1px solid #ffffff;
+        padding: 5px;
+        text-align: center;
+    }
+    .citas-del-medico td button {
+        margin: 5px;
+        padding: 10px 14px;
+        border-radius: 10px;
+    }
+    .citas-del-medico h2 {
+        margin-bottom: 20px;
+        font-size: 26px;
+        color: #0fa4a6;
+    }
+    .citas-del-medico thead th{
+        background: #16C1C8;
+        color: white;
+        padding: 10px;
+        border-radius: 8px;
+    }
+    .citas-del-medico tbody td{
+        background: #e8ffff;
+        padding: 10px;
+        border-radius: 6px;
+        color: #16C1C8;
+    }
+    .citas-del-medico:hover{
+        transform: scale(1.02);
+        box-shadow: 0 8px 20px rgba(22, 193, 200, 0.4);
+    }
+    /**/
+    .licencia table{
+        width: 100%;
+        border-collapse: separate;
+        border-spacing: 0 8px;
+    }
+    .licencia th,
+    .licencia td{
+        border: 1px solid #ffffff;
+        padding: 5px;
+        text-align: center;
+    }
+    .licencia td button {
+        margin: 5px;
+        padding: 10px 14px;
+        border-radius: 10px;
+    }
+    .licencia h2 {
+        margin-bottom: 20px;
+        font-size: 26px;
+        color: #0fa4a6;
+    }
+    .licencia thead th{
+        background: #16C1C8;
+        color: white;
+        padding: 10px;
+        border-radius: 8px;
+    }
+    .licencia tbody td{
+        background: #e8ffff;
+        padding: 10px;
+        border-radius: 6px;
+        color: #16C1C8;
+    }
+    .licencia:hover{
+        transform: scale(1.02);
+        box-shadow: 0 8px 20px rgba(22, 193, 200, 0.4);
+    }
+    .seleccionar-paciente{
+        background: #16C1C8;
+        color: #ffffff;
+        padding: 5px;
+        border-radius: 8px;
+        margin: 5px;
+    }
+    .seleccionar-paciente:hover{
+        background: #12413d;
+    }
+    /* LICENCIAS DE MEDICOS */
+    .licencia-medico {
+        text-align: center;
+        width: 40%;
+        margin: 30px auto;
+        padding: 30px;
+        background: #ffffff;
+        border-radius: 12px;
+        transition: 0.3s ease;
+        box-shadow: 0 4px 12px rgba(22, 193, 200, 0.75);
+    }
+    .inicio-licencia, .fin-licencia, .duracion-licencia {
+        margin-bottom: 18px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .inicio-licencia label, .fin-licencia label, .duracion-licencia label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 600;
+        color: #16C1C8;
+    }
+    .inicio-licencia input, .fin-licencia input, .duracion-licencia input {
+        width: 600px;
+        padding: 10px 14px;
+        border: 1px solid #cfcfcf;
+        border-radius: 10px;
+        font-size: 15px;
+        box-sizing: border-box;
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .inicio-licencia input:focus, .fin-licencia input:focus, .duracion-licencia input:focus {
+        border-color: #16C1C8;
+        box-shadow: 0 0 8px rgba(22, 193, 200, 0.3);
+        outline: none;
+    }
+    /* ESTILOS DE RECEPCION */
     .encabezado-recepcion{
         background: #49CCCC;
         color: #ffffff;
@@ -1081,4 +1380,29 @@ body {
         justify-content: flex-end; /* Manda los botones a la derecha */
         margin-top: -65px;
         padding-right: 20px; /* Ajusta si quieres que estén más pegados o separados del borde */
+    }
+    /* AGREGAR PACIENTES */
+    .curp-paciente, .ine-paciente, .nombre-paciente, .direccion-paciente, .edad-paciente, .peso-paciente, .estatura-paciente, .descripcion-paciente {
+        margin-bottom: 18px;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    .curp-paciente label, .ine-paciente label, .nombre-paciente label, .direccion-paciente label, .edad-paciente label, .peso-paciente label, .estatura-paciente label, .descripcion-paciente label{
+        display: block;
+        margin-bottom: 6px;
+        font-weight: 600;
+        color: #16C1C8;
+    }
+    .curp-paciente input, .ine-paciente input, .nombre-paciente input, .direccion-paciente input, .edad-paciente input, .peso-paciente input, .estatura-paciente input, .descripcion-paciente input {
+        width: 600px;
+        padding: 10px 14px;
+        border: 1px solid #cfcfcf;
+        border-radius: 10px;
+        font-size: 15px;
+        box-sizing: border-box;
+        transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .curp-paciente input:focus, .ine-paciente input:focus, .nombre-paciente input:focus, .direccion-paciente input:focus, .edad-paciente input:focus, .peso-paciente input:focus, .estatura-paciente input:focus, .descripcion-paciente input:focus {
+        border-color: #16C1C8;
+        box-shadow: 0 0 8px rgba(22, 193, 200, 0.3);
+        outline: none;
     }

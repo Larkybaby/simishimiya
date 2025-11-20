@@ -3,7 +3,7 @@
 <html lang="es">
     <head>
         <meta charset="UTF-8">
-        <meta name="viewport" content="width=ddevice-width, initial-scale=1.0">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Agregar Médico</title>
         <link rel="stylesheet" href="../../styles/components.css">
     </head>
@@ -12,35 +12,91 @@
         <div id="header-container"></div>
         <main>
             <section class="form-section">
-                <h2>Agregar a un nuevo medico</h2>
-                <form action="/agregarmedico" method="POST"></form>
+                <h2>AGREGAR A UN NUEVO MEDICO</h2>
+                <div class="agregar-medico-general">
+    
+                <form id="form-medico">
+                    <!--Name del causa-->
+                    <div class="nombre-medico">
                     <label for="nombre_completo">Nombre Completo:</label>
-                    <input type="text" id="nombre_completo" name="nombre_completo" required><br>
-                    <label for="especialidad">Especialidad:</label>
-                    <select class="form-control" name="categoria" required>
-                    <option value="seleccione">seleccione una opcion..</option>
-                    <option value="Pediatra">Pediatra</option>
-                    <option value="Pediatra">Ginecologo</option>
-                    <option value="Cardiologia">Cardiologia</option>
-                    <option value="Dermatologia">Dermatologia</option>
-                    </select>
-                    <label for="telefono">Teléfono:</label>
-                    <input type="tel" id="telefono" name="telefono" required><br>
-                    <label for="edad">Edad:</label>
-                    <input type="number" id="edad" name="edad" required><br>
-                    <label for="direccion">Dirección:</label>
-                    <input type="text" id="direccion" name="direccion" required><br>
+                    <input type="text" id="nombre_completo" name="nombre_completo" required placeholder="Ej: Jose Torres Hernandez"><br>
+                    </div>
+                    <!--Codigo unico de sepa que bolas-->
+                    <div class="curp-medico">
                     <label for="curp">CURP:</label>
-                    <input type="text" id="curp" name="curp" required><br>
-                    <label for="codigo">Código Médico:</label>
-                    <input type="text" id="codigo" name="codigo" required><br>
+                    <input type="text" id="curp" name="curp" required placeholder="Ej: PEGJ900314HDFMRN00"><br>
+                    </div>
+                    <!--En q chambeas papi-->
+                    <div class="especialidad-medico">
+                        <label for="especialidad">Especialidad:</label>
+                        <select id="form-control" name="especialidad" required>
+                            <option value="">Seleccione una opcion..</option>
+                            <option value="Pediatra">Pediatra</option>
+                            <option value="Pediatra">Ginecologo</option>
+                            <option value="Cardiologia">Cardiologia</option>
+                            <option value="Dermatologia">Dermatologia</option>
+                        </select>
+                    </div>
+                    <!--Pasa numero  🗣🥵-->
+                    <div class="telefono-medico">
+                        <label for="telefono">Teléfono:</label>
+                        <input type="tel" id="telefono" name="telefono" required placeholder="Ej: 47-47-55-44-99"><br>
+                    </div>
+                    <!--Cuantos años tienes (que no te bañas)-->
+                    <div class="edad-medico">
+                        <label for="edad">Edad:</label>
+                        <input type="number" id="edad" name="edad" required placeholder="25"><br>
+                    </div>
+                    <!--Elmo sabe donde vives ktm-->
+                    <div class="direccion-medico">
+                        <label for="direccion">Dirección:</label>
+                        <input type="text" id="direccion" name="direccion" required placeholder="Ej: Calle centro #55 col vida nueva"><br>
+                    </div>
+                    <!--Codigo aquino en la tienda de fortnite-->
+                    <div class="codigo-medico">
+                        <label for="codigo">Código Médico:</label><!--que tipo de codigo es? lo van a poner a mano?-->
+                        <input type="text" id="codigo" name="codigo" required placeholder="Ej: "><br>
+                    </div>
+                        <div class="botones-medico">
+                        <button type="submit" class="agregar-medico">Agregar</button>
+                        <button type="button" onclick="location.href='medico.html'" class="cancelar-medico">Cancelar</button>
+                        </div>
             </form>
             </label></section>
-            <button onclick="location.href='medico.html'" class="agregar-medico">Agregar</button>
-            <button onclick="location.href='medico.html'" class="cancelar-medico">Cancelar</button>
+            </div>
         </main>
         <!--footer-->
         <div id="footer-container"></div>
+        <!--script para que funcione agregar medico, un padre nuestro y jala-->
+        <script type="module">
+            import { MedicoController } from '../../controllers/MedicoController.js';
+
+            const form = document.getElementById("form-medico");
+
+            form.addEventListener("submit", async (e) => {
+                e.preventDefault();
+
+                const medicoData = {
+                    nombre_completo: form.nombre_completo.value,
+                    curp: form.curp.value,
+                    especialidad: form.especialidad.value,
+                    telefono: form.telefono.value,
+                    edad: form.edad.value,
+                    direccion: form.direccion.value,
+                    codigo: form.codigo.value
+
+                };
+                const {data,error} = await MedicoController.crearMedico(medicoData);
+                if(error){
+                    alert("no se pudo agregar al medico");
+                    console.error('Revisa tus cosas chica',error);
+                    return;
+                }
+                alert("Medico agregado exitosamente");
+                window.location.href = "medico.html";
+            });
+        </script>
+        
         <script>
         //cargar header
         fetch('/../../../header.html')

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Solicitar Licencia</title>
+        <link rel="stylesheet" href="../../styles/components.css">
+    </head>
+    <body>
+        <div id="header-container"></div>
+        <main>
+            <section class="form-section">
+                <h2>Solicitar Licencia Médica</h2>
+                <div class="licencia-medico">
+                <form action="#" method="post"></form>
+                    <!--Inicio-->
+                    <div class="inicio-licencia">
+                    <label for="fecha-inicio">Fecha de Inicio:</label>
+                    <input type="date" id="fecha-inicio" name="fecha-inicio" required><br><br>
+                    </div>
+                    <!--Fin-->
+                    <div class="fin-licencia">
+                    <label for="fecha-fin">Fecha de Fin:</label>
+                    <input type="date" id="fecha-fin" name="fecha-fin" required><br><br>
+                    </div>
+                    <!--Días-->
+                    <div class="duracion-licencia">
+                    <label for="duracion_dias">Total de Días</label><br>
+                    <input type="number" id="duracion_dias" name="duracion_dias" rows="4" cols="50" required><br><br>
+                    <div>
+                        <div class="botones-medico">
+                            <button onclick="location.href='citas-medico.html'" class="agregar-medico">Agregar</button>
+                            <button onclick="location.href='citas-medico.html'" class="cancelar-medico">Cancelar</button>
+                        </div>
+                </div>
+            </section>
+        </main>
+        <!--footer-->
+        <div id="footer-container"></div>
+       <!--cargar componentes-->
+        <script>
+            //cargar header
+            fetch('../../../header.html')
+            .then(response => response.text())
+            .then(data => {
+                document.getElementById('header-container').innerHTML = data;
+            })
+            .catch(error => console.error('Error al cargar el header:', error));
+            //cargar footer
+            fetch('../../../footer.html')
+            .then(response => response.text())
+            .then(data =>{
+                document.getElementById('footer-container').innerHTML = data;
+            })
+            .catch(error => console.error('Error al cargar el footer:', error));
+        </script>
+    </body>
+</html>

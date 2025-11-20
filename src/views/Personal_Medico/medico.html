@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Personal Médico</title>
         <link rel="stylesheet" href="../../styles/components.css">
-</head>
+
     </head>
     <body>
         <!--header-->
@@ -16,6 +16,7 @@
             <p>Bienvenido al área de personal médico.</p><br>
             <div class="botones-medico">
             <button class="botonregreso" onclick="location.href='../sucursales/bienvenido.html'">Regresar</button>
+            <!--revisar boton de agregar-->
             <button class="botonagregar" onclick="location.href='agregarmedico.html'">Agregar medico</button>
             </div>
             </div>
@@ -32,22 +33,11 @@
                     <th>Telefono</th>
                     <th>Direccion</th>
                     <th>Especialidad</th>
+                    <th>Numero de sucursal</th>
                     <th>Acciones</th>
                 </tr>
             </thead>
-            <tbody>
-                <td>Ejemplo codigo</td>
-                <td>Ejemplo curp</td>
-                <td>Ejemplo nombre</td>
-                <td>Ejemplo edad</td>
-                <td>Ejemplo telefono</td>
-                <td>Ejemplo direccion</td>
-                <td>Ejemplo especialidad</td>
-                <td>
-                    <button class="citas-medico">Ver citas</button>
-                    <button class="editar-medico">Editar medico</button>
-                    <button class="eliminar-medico">Eliminar medico</button>
-                </td>
+            <tbody><!--quitar los ejemplos-->
             </tbody>
                 </table>
             </div>
@@ -71,6 +61,98 @@
                 document.getElementById('footer-container').innerHTML = data;
             })
             .catch(error => console.error('Error al cargar el footer:', error));
+        </script>
+        <script type="module">
+            //dios bendiceme con el script para que funcione
+            //importar controlador
+            import { MedicoController} from '../../controllers/MedicoController.js';
+            //cargar medicos
+            document.addEventListener("DOMContentLoaded",cargarMedicos);
+            //funcion para cargarlos
+            async function cargarMedicos() {
+            try{
+                /*const numero_sucursal = localStorage.getItem("numero_sucursal");*/
+                
+
+                const {medicos,error} = await MedicoController.CargarMedicos();
+
+                if(error){
+                    console.error('Error cargando medicos',error);
+                    return;
+                }
+                renderizarMedicos(medicos);
+            }
+            catch(error){
+                console.error("Error:",error);
+            }
+            }
+            //renderizar en tabla de medicos
+            //chuy:tu puedes Alo no hay conocimiento pero hay fe hell yeah(alo:hahaha ;-;)
+            function renderizarMedicos(medicos){
+                const tbody = document.querySelector("tbody");
+                tbody.innerHTML = "";//tabla limpia
+                //si no hay medicos dice esto 
+                if(!medicos || medicos.length === 0 ){
+                tbody.innerHTML = `<tr><td colspan="9">No hay medicos en esta sucursal</td></tr>`;
+                return;
+                }
+                medicos.forEach(medico => {
+                    const tr = document.createElement("tr");
+                    tr.innerHTML = 
+                    `<td>${medico.codigo}</td>
+                     <td>${medico.curp}</td>
+                     <td>${medico.nombre_completo}</td>
+                     <td>${medico.edad}</td>
+                     <td>${medico.telefono}</td>
+                     <td>${medico.direccion}</td>
+                     <td>${medico.especialidad}</td>
+                     <td>${medico.numero_sucursal}</td>
+                     <td>
+                        <button class="citas-medico" data-codigo="${medico.codigo}">ver citas</button>
+                        <button class="editar-medico" data-codigo="${medico.codigo}">Editar medico</button>
+                        <button class="eliminar-medico" data-codigo="${medico.codigo}">Eliminar Medico</button>
+                    </td>
+                    `;
+                    tbody.appendChild(tr);
+                });
+                activarBotones();
+            }
+            //pa que funcionen mis botoncitos preciosos
+            function activarBotones(){
+                //botoncito para ir a citas
+                document.querySelectorAll(".citas-medico").forEach(btn => {
+                    btn.addEventListener("click", () => {
+                        localStorage.setItem("codigo_medico",btn.dataset.codigo);
+                        location.href = "citas-medico.html";
+                    });
+                });
+                //botoncito para ir a editar
+                document.querySelectorAll(".editar-medico").forEach(btn => {
+                    btn.addEventListener("click", () => { 
+                        localStorage.setItem("codigo_medico",btn.dataset.codigo);
+                        location.href = "editarmedico.html";
+                    });
+
+                });
+                //botoncito para eliminar(con confirmacion porque los errores existen)
+                document.querySelectorAll(".eliminar-medico").forEach(btn => {
+                btn.addEventListener("click", async () => {
+
+                const codigo = btn.dataset.codigo;
+
+                if (!confirm("¿Segurísima que quieres borrar?")) return;
+
+                const { success, error } = await MedicoController.eliminarMedico(codigo);
+
+                if (success) {
+                alert("Se eliminó el médico");
+                cargarMedicos();
+                } else {
+                alert("No se pudo eliminar");
+                }
+                });
+                });
+            }
         </script>
     </body>
 </html>

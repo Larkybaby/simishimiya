@@ -1,0 +1,103 @@
+<!--link funciona-->
+<!DOCTYPE html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=ddevice-width, initial-scale=1.0">
+    <title>Clinica simi - Citas Medicos</title>
+    <link rel="stylesheet" href="../../styles/components.css">
+</head>
+<body>
+    <!--header-->
+    <div id="header-container"></div>
+    <main>
+        <div class="bienvenida-medico">
+        <h2>Bienvenido Doctor [nombre_completo]</h2>
+        <div class="boton-medico">
+            <button onclick="location.href='medico.html'">Regresar</button>
+        </div>
+    </div>
+    <br>
+    <div class="contenido-medico">
+        <div class="citas-del-medico">
+            <h2>Citas Agendadas</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>ID Cita</th>
+                            <th>CURP Paciente</th>
+                            <th>Codigo Medico</th>
+                            <th>Fecha</th>
+                            <th>Horario</th>
+                            <th>Turno</th>
+                            <th>Cancelada?</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>[id_cita]</td>
+                            <td>[curp_paciente]</td>
+                            <td>[codigo_medico]</td>
+                            <td>[fecha]</td>
+                            <td>[horario]</td>
+                            <td>[turno]</td>
+                            <td>[cancelada]</td>
+                            <td>
+                                <button onclick="location.href=''">Actualizar estado del paciente</button>
+                                <button onclick="location.href=''">Registrar receta</button>
+                                <button onclick="location.href=''">Editar receta</button>        
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+        </div>
+        <br>
+        <div class="licencia">
+            <div class="lista-licencias">
+                <h2>Licencias Tomadas</h2>
+                <ul>
+                    <div class="boton-licencia">
+                    <button onclick="location.href='licenciasmedico.html'">Solicitar licencia</button>
+                    </div>
+                </ul>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>ID Licencia</th>
+                                <th>Fecha de inicio</th>
+                                <th>Fecha de fin</th>
+                                <th>Total de Días</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>[id_licencia]</td>
+                                <td>[fecha_inicio]</td>
+                                <td>[fecha_fin]</td>
+                                <td>[duracion_dias]</td>
+                            </tr>
+                        </tbody>
+                    </table>
+        </div>
+    </div>
+    </main>
+    <!--footer-->
+    <div id="footer-container"></div>
+    <script>
+        //cargar header
+        fetch('/../../../header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header-container').innerHTML = data;
+        })
+        .catch(error => console.error('Error al cargar el header', error));
+        //cargar footer
+        fetch('/../../../footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer-container').innerHTML = data;
+        })
+        .catch(error => console.error('Error al cargar el footer', error));
+    </script>
+</body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=ddevice-width, initial-scale=1.0">
+        <title>Agregar Médico</title>
+        <link rel="stylesheet" href="../../styles/components.css">
+    </head>
+    <body>
+        <!--header-->
+        <div id="header-container"></div>
+        <main>
+            <section class="form-section">
+                <h2>AGREGAR A UN NUEVO PACIENTE</h2>
+                <div class="agregar-medico-general">
+                <form action="/agregarmedico" method="POST"></form>
+                    <!--No c *explota*-->
+                    <div class="curp-paciente">
+                        <label for="curp">CURP:</label>
+                        <input type="text" id="curp" name="curp" required>
+                    </div>
+                    <div class="ine-paciente">
+                        <label for="ine">INE:</label>
+                        <input type="text" id="ine" name="ine" required>
+                    </div>
+                    <div class="nombre-paciente">
+                        <label for="nombre_completo">Nombre Completo:</label>
+                        <input type="text" id="nombre_completo" name="nombre_completo" required>
+                    </div>
+                    <div class="direccion-paciente">
+                        <label for="direccion">Dirección:</label>
+                        <input type="text" id="direccion" name="direccion" required>
+                    </div>
+                    <div class="edad-paciente">
+                        <label for="edad">Edad:</label>
+                        <input type="number" id="edad" name="edad" required>
+                    </div>
+                    <div class="peso-paciente">
+                        <label for="peso">Peso (kg):</label>
+                        <input type="number" id="peso" name="peso" required>
+                    </div>
+                    <div class="estatura-paciente">
+                        <label for="estatura">Estatura (cm):</label>
+                        <input type="number" id="estatura" name="estatura" required>
+                    <div class="descripcion-paciente">
+                        <label for="descripcion_paciente">Descripción Médica:</label>
+                        <textarea id="descripcion_deestado" name="descripcion_deestado" required></textarea>
+                    </div>
+                    <!--separacion jejejejfhiueftncyaily4wnla-->
+                        <div class="botones-medico">
+                        <button onclick="location.href='../Personal_Recepcion/pacientes.html'" class="agregar-medico">Agregar</button>
+                        <button onclick="location.href='../Personal_Recepcion/pacientes.html'" class="cancelar-medico">Cancelar</button>
+                        </div>
+            </form>
+            </label></section>
+            </div>
+        </main>
+        <!--footer-->
+        <div id="footer-container"></div>
+        <script>
+        //cargar header
+        fetch('/../../../header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header-container').innerHTML = data;
+        })
+        .catch(error => console.error('Error al cargar el header', error));
+        //cargar footer
+        fetch('/../../../footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer-container').innerHTML = data;
+        })
+        .catch(error => console.error('Error al cargar el footer', error));
+        </script>
+    </body>
+    </html>

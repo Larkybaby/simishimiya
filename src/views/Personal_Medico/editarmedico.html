@@ -1,0 +1,86 @@
+<!--Funciona link-->
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=ddevice-width, initial-scale=1.0">
+    <title>Clinica Simi - Editar Medico</title>
+    <link rel="stylesheet" href="../../styles/components.css">
+</head>
+<body>
+    <!--header-->
+    <div id="header-container"></div>
+        <main>
+            <section class="form-section">
+                <h2>EDITAR DATOS DEL MEDICO</h2>
+                <div class="editar-medico-general">
+                <form action="/agregarmedico" method="POST"></form>
+                    <!--Name del causa-->
+                    <div class="edit-nombre-medico">
+                    <label for="nombre_completo">Nombre Completo:</label>
+                    <input type="text" id="nombre_completo" name="nombre_completo" required><br>
+                    </div>
+                    <!--Codigo unico de sepa que bolas-->
+                    <div class="edit-curp-medico">
+                    <label for="curp">CURP:</label>
+                    <input type="text" id="curp" name="curp" required placeholder="Ej: PEGJ900314HDFMRN00"><br>
+                    </div>
+                    <!--En q chambeas papi-->
+                    <div class="edit-especialidad-medico">
+                    <label for="especialidad">Especialidad:</label>
+                    <select class="form-control" name="categoria" required>
+                    <option value="seleccione">Seleccione una opcion..</option>
+                    <option value="Pediatra">Pediatra</option>
+                    <option value="Pediatra">Ginecologo</option>
+                    <option value="Cardiologia">Cardiologia</option>
+                    <option value="Dermatologia">Dermatologia</option>
+                    </select>
+                    </div>
+                    <!--Pasa numero 🗣🥵-->
+                    <div class="edit-telefono-medico">
+                    <label for="telefono">Teléfono:</label>
+                    <input type="tel" id="telefono" name="telefono" required placeholder="Ej: 47-47-55-44-99"><br>
+                    </div>
+                    <!--Cuantos años tienes (que no te bañas)-->
+                    <div class="edit-edad-medico">
+                    <label for="edad">Edad:</label>
+                    <input type="number" id="edad" name="edad" required placeholder="25"><br>
+                    </div>
+                    <!--Elmo sabe donde vives ktm-->
+                    <div class="edit-direccion-medico">
+                    <label for="direccion">Dirección:</label>
+                    <input type="text" id="direccion" name="direccion" required placeholder="Ej: Calle centro #55 col vida nueva"><br>
+                    </div>
+                    <!--Codigo aquino en la tienda de fortnite-->
+                    <div class="edit-codigo-medico">
+                    <label for="codigo">Código Médico:</label><!--que tipo de codigo es? lo van a poner a mano?-->
+                    <input type="text" id="codigo" name="codigo" required placeholder="Ej: "><br>
+                    </div>
+                        <div class="botones-medico">
+                        <button onclick="location.href='medico.html'" class="actualizar-medico">Guardar Cambios</button>
+                        <button onclick="location.href='medico.html'" class="cancelar-medico">Cancelar</button>
+                        </div>
+            </form>
+            </label></section>
+            </div>
+        </main>
+    <!--footer-->
+    <div id="footer-container"></div>
+    <script>
+        //cargar header
+        fetch('/../../../header.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('header-container').innerHTML = data;
+        })
+        .catch(error => console.error('Error al cargar el header', error));
+        //cargar el footer
+        fetch('/../../../footer.html')
+        .then(response => response.text())
+        .then(data => {
+            document.getElementById('footer-container').innerHTML = data;
+        })
+        .catch(error => console.error('Error al cargar el footer', error));
+    </script>
+</body>
+</html>
