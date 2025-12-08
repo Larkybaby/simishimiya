@@ -1,6 +1,6 @@
 // src/services/SucursalService.js
 // Cliente de Supabase que funciona en navegador y Node.js
-let supabaseClient = null;
+/*let supabaseClient = null;
 
 async function getSupabaseClient() {
     if (supabaseClient) return supabaseClient;
@@ -68,5 +68,89 @@ export class SucursalService {
         }
         
         return { data, error: null };
+    }
+}*/
+/*import { getSupabaseClient } from '../../supabase/supabaseClient.js';
+
+export class SucursalService {
+    static async obtenerTodas() {
+        try {
+            const supabase = await getSupabaseClient();
+            const { data, error } = await supabase
+                .from('sucursal')
+                .select('*')
+                .order('numero_sucursal');
+            
+            if (error) {
+                console.error('Error al obtener sucursales:', error);
+                return { data: [], error };
+            }
+            return { data, error: null };
+        } catch (err) {
+            console.error('Error en SucursalService.obtenerTodas:', err);
+            return { data: [], error: err };
+        }
+    }
+
+    static async obtenerPorId(numero_sucursal) {
+        try {
+            const supabase = await getSupabaseClient();
+            const { data, error } = await supabase
+                .from('sucursal')
+                .select('*')
+                .eq('numero_sucursal', numero_sucursal)
+                .single();
+            
+            if (error) {
+                console.error('Error al obtener sucursal:', error);
+                return { data: null, error };
+            }
+            return { data, error: null };
+        } catch (err) {
+            console.error('Error en SucursalService.obtenerPorId:', err);
+            return { data: null, error: err };
+        }
+    }
+}*/
+import { getSupabaseClient } from '../../supabase/supabaseClient.js';
+
+export class SucursalService {
+    static async obtenerTodas() {
+        try {
+            const supabase = await getSupabaseClient();
+            const { data, error } = await supabase
+                .from('sucursal')
+                .select('*')
+                .order('numero_sucursal');
+            
+            if (error) {
+                console.error('Error al obtener sucursales:', error);
+                return { data: [], error };
+            }
+            return { data, error: null };
+        } catch (err) {
+            console.error('Error en SucursalService.obtenerTodas:', err);
+            return { data: [], error: err };
+        }
+    }
+
+    static async obtenerPorId(numero_sucursal) {
+        try {
+            const supabase = await getSupabaseClient();
+            const { data, error } = await supabase
+                .from('sucursal')
+                .select('*')
+                .eq('numero_sucursal', numero_sucursal)
+                .single();
+            
+            if (error) {
+                console.error('Error al obtener sucursal:', error);
+                return { data: null, error };
+            }
+            return { data, error: null };
+        } catch (err) {
+            console.error('Error en SucursalService.obtenerPorId:', err);
+            return { data: null, error: err };
+        }
     }
 }

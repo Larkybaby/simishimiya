@@ -6,6 +6,22 @@
     <title>Farmacia Simi - Panel de Control</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="../../styles/components.css">
+	 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js/dist/umd/supabase.min.js"></script>
+    <script>
+      (async () => {
+        try {
+          const response = await fetch('/api/supabase-config');
+          const config = await response.json();
+          
+          window.supabase = window.supabase.createClient(config.url, config.anonKey);
+          window.supabaseLoaded = true;
+          console.log('Supabase inicializado desde servidor');
+        } catch (e) {
+          console.error('Error cargando config de Supabase:', e);
+          window.supabaseLoaded = false;
+        }
+      })();
+    </script>
 </head>
 <body>
 	<!-- Contenedores para header y footer -->
@@ -285,39 +301,38 @@
 					const editId = formVenta.dataset.editId;
 					
 					if (editId) {
-						console.log('=== MODO EDICIÓN ACTIVADO ===');
-						console.log('ID DE VENTA A EDITAR:', editId);
+						console.log('=== MODO EDICIÓN ACTIVADO ===', editId);
 
-						try {
-							const ventaData = {
-								total: calcularTotal(medicamentosVenta), // si ya tienes esta función, úsala
-							};
+						const ventaData = {
+							total: medicamentosVenta.reduce((sum, med) => sum + med.subtotal, 0),
+						};
 
-							console.log('Datos a enviar a actualización:', ventaData);
+						console.log('Datos a enviar a actualización:', ventaData, 'medicamentos:', medicamentosVenta);
 
-							const { venta, error } = await FarmaciaController.actualizarVenta(editId, ventaData);
+						const { venta, error } = await FarmaciaController.actualizarVenta(editId, ventaData, medicamentosVenta);
 
-							console.log('Respuesta actualizar venta:', { venta, error });
+						console.log('Respuesta actualizar venta:', { venta, error });
 
-							if (error) {
-								alert('Error al actualizar la venta');
-								return;
-							}
-
-							alert('Venta actualizada con éxito');
-							
-							// Limpiar estado
-							medicamentosVenta = [];
-							actualizarListaMedicamentos();
-							formVenta.removeAttribute('data-edit-id');
-							formVenta.reset();
-
-							return;
-						} catch (err) {
-							console.error('Error al actualizar la venta:', err);
-							alert('No se pudo actualizar la venta');
+						if (error) {
+							alert('Error al actualizar la venta: ' + (error.message || JSON.stringify(error)));
 							return;
 						}
+
+						alert('Venta actualizada con éxito');
+
+						// limpiar modo edición
+						formVenta.removeAttribute('data-edit-id');
+						medicamentosVenta = [];
+						actualizarListaMedicamentos();
+						formVenta.reset();
+						if (formPanel) {
+							formPanel.classList.add('hidden');
+							formPanel.setAttribute('aria-hidden', 'true');
+						}
+
+						// refrescar lista
+						await FarmaciaController.inicializar();
+						return;
 					} else {
 						console.log('Enviando array al controller. Cantidad de medicamentos:', medicamentosVenta.length);
 						const { venta, error } = await FarmaciaController.crearVenta(medicamentosVenta);

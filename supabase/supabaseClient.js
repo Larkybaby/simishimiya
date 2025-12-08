@@ -8,7 +8,7 @@ const supabase = createClient(
 );
 
 /*export default supabase;*/
-let supabase;
+/*let supabase;
 
 if (typeof window === "undefined") {
   // Ejecutado en Node
@@ -18,18 +18,28 @@ if (typeof window === "undefined") {
   supabase = (await import("./supabaseClient.browser.js")).default;
 }
 
-/*if (typeof window === "undefined") {
-  console.log("Cargando cliente Node...");
-  supabase = (await import("./supabaseClient.node.js")).supabase;
-} else {
-  console.log("Cargando cliente Browser...");
-  const mod = await import("./supabaseClient.browser.js");
-  console.log("Contenido cargado:", mod);
-  supabase = mod.default;
-}*/
+export default supabase;*/
+let cachedClient = null;
+
+export async function getSupabaseClient() {
+  if (cachedClient) return cachedClient;
+
+  if (typeof window === "undefined") {
+    // Node.js (servidor)
+    const mod = await import("./supabaseClient.node.js");
+    cachedClient = mod.default(); // getSupabaseClientNode es la función por defecto
+    return cachedClient;
+  } else {
+    // Navegador
+    const mod = await import("./supabaseClient.browser.js");
+    cachedClient = await mod.getSupabaseClientBrowser();
+    return cachedClient;
+  }
+}
+
+export default getSupabaseClient;
 
 
-export default supabase;
 
 
 

@@ -1,3 +1,6 @@
+//cambio 1 prueba
+import { getSupabaseClient } from '../../supabase/supabaseClient.js';
+
 import {PacienteService} from '../services/PacienteService.js';
 import {Paciente} from '../models/Paciente.js';
 

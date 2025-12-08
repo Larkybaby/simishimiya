@@ -1,3 +1,5 @@
+import { getSupabaseClient } from '../../supabase/supabaseClient.js';
+
 import {MedicoService} from '../services/MedicoService.js';
 import {Medico} from '../models/Medico.js';
 

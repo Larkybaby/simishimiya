@@ -9,6 +9,10 @@ import medicoRoutes from "./routes/medicoRoutes.js";
 import pacienteRoutes from "./routes/pacienteRoutes.js";
 import citaRoutes from "./routes/citaRoutes.js";
 import licenciaRoutes from "./routes/LicenciaRoutes.js";
+//import para probar
+import configRoutes from './routes/configRoutes.js';
+
+
 
 const app = express();
 //alo puso
@@ -23,6 +27,9 @@ app.use("/src", express.static(path.join(process.cwd(), "src")));
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+//nueva linea para probar
+app.use("/api", configRoutes);
 
 // CORS básico y manejo de preflight (útil si expones con ngrok/localtunnel)
 app.use((req, res, next) => {
